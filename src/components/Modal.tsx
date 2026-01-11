@@ -1,14 +1,31 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState } from 'react';
+import { Fragment, useState  } from 'react';
 import { useAppStore } from '../stores/useAppStore';
+import type { Recipe } from '../types';
 
 export default function Modal() {
 
    const modal = useAppStore((state) => state.modal)
    const closeModal = useAppStore((state) => state.closeModal)
    const selectedRecipe = useAppStore((state) => state.selectedRecipe)
+  
    const renderIngredientes = () => {
-    <p>Desde RendeerIngredients</p>
+   const ingredients = []
+   for  (let i = 1; i<= 6; i++){
+    const ingredient = selectedRecipe[`strIngredient${i}` as keyof Recipe]
+    const measure = selectedRecipe[`strMeasure${i}` as keyof Recipe]
+   
+  if(ingredient && measure) {
+    ingredients.push(
+     <li key={i} className=''>
+        {ingredient} - {measure}
+     </li>
+    )
+  }
+  }
+
+   
+    return ingredients
    }
 
 
@@ -43,18 +60,37 @@ export default function Modal() {
                   <Dialog.Title as="h3" className="text-gray-900 text-4xl font-extrabold my-5 text-center">
                   {selectedRecipe.strDrink}
                   </Dialog.Title>
-                  <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
-                    
-                  </Dialog.Title>
+                 
 
                   <img 
                   src={selectedRecipe.strDrinkThumb}
                    alt={`Imagen de ${selectedRecipe.strDrinkThumb}`} />
-
+           
+                   <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
+                    Ingredientes y Cantidades
+                  </Dialog.Title>
+                   {renderIngredientes()}
                   <Dialog.Title as="h3" className="text-gray-900 text-2xl font-extrabold my-5">
                     Instrucciones
                   </Dialog.Title>
                   <p className='text-lg'>{selectedRecipe.strInstructions}</p>
+
+                   <div className='mt-5 flex justify-between gap-4'>
+                    <button
+                    type='button'
+                    className='w-full rounded bg-gray-600 p-3 font-bold
+                     uppercase text-white shadow hover:bg-gray-500'
+                    onClick={closeModal}
+                    >Cerrar</button>
+                     <button
+                    type='button'
+                    className='w-full rounded bg-orange-600 p-3 font-bold
+                     uppercase text-white shadow hover:bg-orange-500'
+                     >
+                      Agregar a Favoritos</button>
+                   
+                   </div>
+
                 </Dialog.Panel>
               </Transition.Child>
             </div>

@@ -12,9 +12,15 @@
   "dependencies": {
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
+    "@openrouter/ai-sdk-provider": "^2.0.2",
     "@tailwindcss/vite": "^4.1.13",
+    "ai": "^6.0.50",
     "axios": "^1.12.2",
+    "cors": "^2.8.6",
+    "dotenv": "^17.2.3",
     "expo": "^54.0.25",
+    "express": "^5.2.1",
+    "process": "^0.11.10",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.2",
@@ -23,6 +29,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.0.10",
     "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react-swc": "^4.1.0",
@@ -36,5 +44,18 @@
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.44.0",
     "vite": "^7.1.7"
-  }
+  },
+  "description": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+  "main": "eslint.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiazMoralesCristianYahir/Bebidas_TypeScript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DiazMoralesCristianYahir/Bebidas_TypeScript/issues"
+  },
+  "homepage": "https://github.com/DiazMoralesCristianYahir/Bebidas_TypeScript#readme"
 }

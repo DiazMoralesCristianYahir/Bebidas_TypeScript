@@ -1,5 +1,5 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState  } from 'react';
+import { Fragment  } from 'react';
 import { useAppStore } from '../stores/useAppStore';
 import type { Recipe } from '../types';
 
@@ -9,7 +9,6 @@ export default function Modal() {
    const closeModal = useAppStore((state) => state.closeModal)
    const selectedRecipe = useAppStore((state) => state.selectedRecipe)
    const handleClickFavorite = useAppStore((state) => state.handleClickFavorite)
-   const favoriteExist = useAppStore((state) => state.favoriteExist)
    
   const isFavorite = useAppStore(
   (state) => state.favorites.some(

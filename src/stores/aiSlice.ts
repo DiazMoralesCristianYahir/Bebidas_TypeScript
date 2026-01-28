@@ -4,11 +4,14 @@ import aiServices from "../lib/aiServices";
 
     export type AISlice = {
      recipe: string
+     isGenerating: boolean
      generateRecipe: (prompt: string) => Promise<void>
 }
-   export const createAISlice: StateCreator<AISlice, [], [], AISlice> = (set) => ({
+   export const createAISlice: StateCreator<AISlice> = (set) => ({
     recipe: '',
+    isGenerating: false,
     generateRecipe: async (prompt) => {
+      set({recipe: '', isGenerating: true})
       const data = await aiServices.generateRecipe(prompt)
 
       for await (const textPart of data) {
@@ -16,6 +19,9 @@ import aiServices from "../lib/aiServices";
           recipe: state.recipe + textPart
         }))
       }
+      set({
+          isGenerating: false
+      })
     }
   })
 
